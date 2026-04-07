@@ -48,4 +48,25 @@ class UserController extends Controller
         $user->delete();
         return back()->with('success', 'User berhasil dihapus.');
     }
+
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'password' => ['nullable', 'string', 'min:8'],
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        // Reset/Ubah password jika admin mengisi field password
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.users.index')->with('success', 'Data asisten lab berhasil diperbarui.');
+    }
 }
