@@ -23,6 +23,44 @@
     </div>
 </div>
 
+<div class="mb-6 bg-white rounded-2xl shadow-sm border border-medical-100 p-6 flex flex-col md:flex-row justify-between items-center transition hover:shadow-md">
+    <div class="flex flex-col md:flex-row items-center md:space-x-5 mb-4 md:mb-0">
+        <div class="p-4 bg-medical-50 text-medical-600 rounded-full mb-3 md:mb-0">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        </div>
+        <div class="text-center md:text-left">
+            <h3 class="text-gray-500 text-xs font-bold uppercase tracking-wider">Periode Aktif Asisten</h3>
+            <p class="text-xl font-black text-gray-800 mt-1">
+                {{ $user->active_start_date ? \Carbon\Carbon::parse($user->active_start_date)->translatedFormat('d M Y') : '-' }} <span class="text-gray-400 font-medium">s/d</span> 
+                {{ $user->active_end_date ? \Carbon\Carbon::parse($user->active_end_date)->translatedFormat('d M Y') : '-' }}
+            </p>
+            @if($user->active_end_date && now()->greaterThan($user->active_end_date))
+                <span class="inline-block px-2 py-1 bg-red-100 text-red-700 text-xs font-bold rounded mt-2">MASA AKTIF BERAKHIR</span>
+            @else
+                <span class="inline-block px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded mt-2">AKUN AKTIF</span>
+            @endif
+        </div>
+    </div>
+    
+    <div class="w-full md:w-auto text-center md:text-right bg-gray-50 p-3 rounded-xl border border-gray-100">
+        <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Perekaman Bulan Ini</p>
+        <div class="flex justify-center md:justify-end space-x-2">
+            <div class="bg-white px-3 py-1.5 rounded shadow-sm border border-gray-100 text-center min-w-[60px]">
+                <span class="block text-xl font-black text-green-600">{{ $stats['pagi'] }}</span>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Pagi</span>
+            </div>
+            <div class="bg-white px-3 py-1.5 rounded shadow-sm border border-gray-100 text-center min-w-[60px]">
+                <span class="block text-xl font-black text-orange-600">{{ $stats['siang'] }}</span>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Siang</span>
+            </div>
+            <div class="bg-white px-3 py-1.5 rounded shadow-sm border border-gray-100 text-center min-w-[60px]">
+                <span class="block text-xl font-black text-red-600">{{ $stats['izin'] }}</span>
+                <span class="text-[10px] font-bold text-gray-400 uppercase">Izin</span>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Form Absensi -->
     <div class="lg:col-span-2">
