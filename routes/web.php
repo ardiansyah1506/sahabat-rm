@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
     Route::get('/export-attendance', [AdminDashboard::class, 'export'])->name('export');
-    Route::resource('users', UserController::class)->except(['show']);
+    Route::resource('users', UserController::class);
     Route::resource('tasks', AdminTaskController::class)->except(['show']);
     Route::resource('attendances', App\Http\Controllers\Admin\AttendanceController::class)->only(['edit', 'update', 'destroy']);
     Route::resource('lab_heads', App\Http\Controllers\Admin\LabHeadController::class)->except(['show', 'create', 'edit']);

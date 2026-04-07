@@ -70,15 +70,23 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
-        <form id="edit-form" method="POST" class="p-6 space-y-4">
-            @csrf @method('PUT')
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
-                <input type="text" name="name" id="edit-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" name="email" id="edit-email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                    <input type="text" name="name" id="edit-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" name="email" id="edit-email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Mulai Aktif</label>
+                    <input type="date" name="active_start_date" id="edit-active-start" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Akhir Aktif</label>
+                    <input type="date" name="active_end_date" id="edit-active-end" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                </div>
             </div>
             <div class="pt-2 border-t border-gray-100">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Password Baru (Opsional)</label>
@@ -101,6 +109,8 @@
         document.getElementById('edit-form').action = `/admin/users/${data.id}`;
         document.getElementById('edit-name').value = data.name;
         document.getElementById('edit-email').value = data.email;
+        document.getElementById('edit-active-start').value = data.active_start_date || '';
+        document.getElementById('edit-active-end').value = data.active_end_date || '';
         document.getElementById('modal-edit').classList.remove('hidden');
     }
 </script>

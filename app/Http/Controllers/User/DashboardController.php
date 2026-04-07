@@ -15,13 +15,26 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+        
         $pending_tasks = Task::with('admin')
-            ->where('user_id', Auth::id())
+            ->where('user_id', $user->id)
             ->where('status', 'pending')
             ->latest()
             ->get();
             
-        return view('user.dashboard', compact('pending_tasks'));
+        $currentMonth = now()->format('Y-m');
+        $attendancesThisMonth = Attendance::where('user_id', $user->id)
+            ->where('date', 'like', $currentMonth . '-%')
+            ->get();
+            
+        $stats = [
+            'pagi' => $attendancesThisMonth->where('shift', 'pagi')->count(),
+            'siang' => $attendancesThisMonth->where('shift', 'siang')->count(),
+            'izin' => $attendancesThisMonth->where('shift', 'izin')->count(),
+        ];
+            
+        return view('user.dashboard', compact('pending_tasks', 'stats', 'user'));
     }
 
     public function export(Request $request)
