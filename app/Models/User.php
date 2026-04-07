@@ -25,6 +25,8 @@ class User extends Authenticatable
         'role',
         'avatar',
         'description',
+        'active_start_date',
+        'active_end_date',
     ];
 
     public function attendances()
