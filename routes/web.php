@@ -29,6 +29,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('tasks', AdminTaskController::class)->except(['show']);
     Route::resource('attendances', App\Http\Controllers\Admin\AttendanceController::class)->only(['edit', 'update', 'destroy']);
     Route::resource('lab_heads', App\Http\Controllers\Admin\LabHeadController::class)->except(['show', 'create', 'edit']);
+    Route::get('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
 });
 
 Route::middleware(['auth', 'role:user'])->prefix('user')->name('user.')->group(function () {
