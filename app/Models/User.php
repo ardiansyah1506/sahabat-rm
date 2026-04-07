@@ -83,9 +83,6 @@ class User extends Authenticatable
     public function getActiveDurationLabelAttribute()
     {
         $days = (int) $this->active_days;
-        if ($days <= 0) {
-            return 'Aktif Hari Ini';
-        }
         return $days . ' Hari';
     }
 }
