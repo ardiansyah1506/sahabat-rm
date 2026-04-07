@@ -59,6 +59,23 @@
                     <textarea name="description" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-medical-500 focus:border-medical-500 outline-none transition" placeholder="Ceritakan sedikit tentang Anda (contoh: Mahasiswa aktif 2026, Asisten Lab RM-2)...">{{ old('description', $user->description) }}</textarea>
                     @error('description')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
+
+                <div class="pt-6 border-t border-gray-100 mt-2">
+                    <h3 class="text-lg font-bold text-gray-800 mb-1">Ganti Password Default</h3>
+                    <p class="text-xs text-gray-500 mb-4">Kosongkan kolom di bawah ini jika Anda tidak berniat untuk mengganti password.</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Password Baru</label>
+                            <input type="password" name="password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-medical-500 focus:border-medical-500 outline-none transition" placeholder="Minimal 8 karakter">
+                            @error('password')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Password Baru</label>
+                            <input type="password" name="password_confirmation" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-medical-500 focus:border-medical-500 outline-none transition" placeholder="Ulangi password baru">
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="pt-4 border-t border-gray-100 flex justify-end">
                     <button type="submit" class="bg-medical-600 hover:bg-medical-700 text-white font-medium py-2 px-6 rounded-lg shadow-sm transition flex items-center">
