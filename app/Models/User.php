@@ -73,13 +73,17 @@ class User extends Authenticatable
         if (!$start) {
             return 0;
         }
-        return now()->diffInDays($start);
+
+        $startDate = \Carbon\Carbon::parse($start)->startOfDay();
+        $today = \Carbon\Carbon::now()->startOfDay();
+
+        return (int) $startDate->diffInDays($today);
     }
 
     public function getActiveDurationLabelAttribute()
     {
-        $days = $this->active_days;
-        if ($days == 0) {
+        $days = (int) $this->active_days;
+        if ($days <= 0) {
             return 'Aktif Hari Ini';
         }
         return $days . ' Hari';
