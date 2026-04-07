@@ -29,16 +29,11 @@
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
         </div>
         <div class="text-center md:text-left">
-            <h3 class="text-gray-500 text-xs font-bold uppercase tracking-wider">Periode Aktif Asisten</h3>
+            <h3 class="text-gray-500 text-xs font-bold uppercase tracking-wider">Status Keaktifan</h3>
             <p class="text-xl font-black text-gray-800 mt-1">
-                {{ $user->active_start_date ? \Carbon\Carbon::parse($user->active_start_date)->translatedFormat('d M Y') : '-' }} <span class="text-gray-400 font-medium">s/d</span> 
-                {{ $user->active_end_date ? \Carbon\Carbon::parse($user->active_end_date)->translatedFormat('d M Y') : '-' }}
+                Sudah Aktif Selama <span class="text-medical-600">{{ $user->active_days }} Hari</span>
             </p>
-            @if($user->active_end_date && now()->greaterThan($user->active_end_date))
-                <span class="inline-block px-2 py-1 bg-red-100 text-red-700 text-xs font-bold rounded mt-2">MASA AKTIF BERAKHIR</span>
-            @else
-                <span class="inline-block px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded mt-2">AKUN AKTIF</span>
-            @endif
+            <span class="inline-block px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded mt-2">AKUN AKTIF</span>
         </div>
     </div>
     

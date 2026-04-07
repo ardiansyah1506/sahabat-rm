@@ -74,13 +74,11 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'password' => ['nullable', 'string', 'min:8'],
             'active_start_date' => ['nullable', 'date'],
-            'active_end_date' => ['nullable', 'date', 'after_or_equal:active_start_date'],
         ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
         $user->active_start_date = $request->active_start_date;
-        $user->active_end_date = $request->active_end_date;
 
         // Reset/Ubah password jika admin mengisi field password
         if ($request->filled('password')) {

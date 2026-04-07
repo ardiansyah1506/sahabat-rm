@@ -26,7 +26,6 @@ class User extends Authenticatable
         'avatar',
         'description',
         'active_start_date',
-        'active_end_date',
     ];
 
     public function attendances()
@@ -64,6 +63,16 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'active_start_date' => 'date',
         ];
+    }
+
+    public function getActiveDaysAttribute()
+    {
+        $start = $this->active_start_date ?? $this->created_at;
+        if (!$start) {
+            return 0;
+        }
+        return now()->diffInDays($start);
     }
 }

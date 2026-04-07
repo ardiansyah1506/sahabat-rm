@@ -30,20 +30,18 @@
         <p class="text-gray-500 mb-6">{{ $user->email }}</p>
         
         <div class="w-full bg-blue-50 border border-blue-100 p-4 rounded-xl">
-            <h3 class="text-xs font-bold text-blue-700 uppercase tracking-wider mb-3">Periode Masa Aktif</h4>
+            <h3 class="text-xs font-bold text-blue-700 uppercase tracking-wider mb-3">Status Keaktifan</h4>
             <div class="flex justify-between items-center mb-2">
-                <span class="text-sm font-medium text-gray-600">Mulai Aktif</span>
-                <span class="text-sm font-bold text-gray-800">{{ $user->active_start_date ? \Carbon\Carbon::parse($user->active_start_date)->translatedFormat('d M Y') : 'Belum diatur' }}</span>
+                <span class="text-sm font-medium text-gray-600">Terdaftar Sejak</span>
+                <span class="text-sm font-bold text-gray-800">{{ $user->active_start_date ? \Carbon\Carbon::parse($user->active_start_date)->translatedFormat('d M Y') : $user->created_at->translatedFormat('d M Y') }}</span>
             </div>
             <div class="flex justify-between items-center">
-                <span class="text-sm font-medium text-gray-600">Akhir Aktif</span>
-                <span class="text-sm font-bold text-gray-800">{{ $user->active_end_date ? \Carbon\Carbon::parse($user->active_end_date)->translatedFormat('d M Y') : 'Belum diatur' }}</span>
+                <span class="text-sm font-medium text-gray-600">Lama Aktif</span>
+                <span class="text-sm font-bold text-blue-700">{{ $user->active_days }} Hari</span>
             </div>
-            @if($user->active_end_date && now()->greaterThan($user->active_end_date))
-                <div class="mt-3 px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded text-center">
-                    MASA AKTIF BERAKHIR
-                </div>
-            @endif
+            <div class="mt-3 px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded text-center">
+                AKUN AKTIF
+            </div>
         </div>
     </div>
     

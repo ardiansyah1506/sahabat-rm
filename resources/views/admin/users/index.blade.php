@@ -81,13 +81,9 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
                     <input type="email" name="email" id="edit-email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
                 </div>
-                <div>
+                <div class="col-span-2">
                     <label class="block text-sm font-medium text-gray-700 mb-1">Mulai Aktif</label>
                     <input type="date" name="active_start_date" id="edit-active-start" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Akhir Aktif</label>
-                    <input type="date" name="active_end_date" id="edit-active-end" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none transition">
                 </div>
             </div>
             <div class="pt-2 border-t border-gray-100">
@@ -112,7 +108,6 @@
         document.getElementById('edit-name').value = data.name;
         document.getElementById('edit-email').value = data.email;
         document.getElementById('edit-active-start').value = data.active_start_date || '';
-        document.getElementById('edit-active-end').value = data.active_end_date || '';
         document.getElementById('modal-edit').classList.remove('hidden');
     }
 </script>
