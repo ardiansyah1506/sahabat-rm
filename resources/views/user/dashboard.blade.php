@@ -31,7 +31,7 @@
         <div class="text-center md:text-left">
             <h3 class="text-gray-500 text-xs font-bold uppercase tracking-wider">Status Keaktifan</h3>
             <p class="text-xl font-black text-gray-800 mt-1">
-                Sudah Aktif Selama <span class="text-medical-600">{{ $user->active_days }} Hari</span>
+                Sudah Aktif Selama <span class="text-medical-600">{{ $user->active_duration_label }}</span>
             </p>
             <span class="inline-block px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded mt-2">AKUN AKTIF</span>
         </div>

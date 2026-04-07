@@ -37,7 +37,7 @@
             </div>
             <div class="flex justify-between items-center">
                 <span class="text-sm font-medium text-gray-600">Lama Aktif</span>
-                <span class="text-sm font-bold text-blue-700">{{ $user->active_days }} Hari</span>
+                <span class="text-sm font-bold text-blue-700">{{ $user->active_duration_label }}</span>
             </div>
             <div class="mt-3 px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded text-center">
                 AKUN AKTIF

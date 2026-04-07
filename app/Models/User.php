@@ -75,4 +75,13 @@ class User extends Authenticatable
         }
         return now()->diffInDays($start);
     }
+
+    public function getActiveDurationLabelAttribute()
+    {
+        $days = $this->active_days;
+        if ($days == 0) {
+            return 'Aktif Hari Ini';
+        }
+        return $days . ' Hari';
+    }
 }
